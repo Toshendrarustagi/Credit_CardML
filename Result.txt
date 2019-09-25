@@ -1,0 +1,8 @@
+precision    recall  f1-score   support
+0       1.00      1.00      1.00    113724
+1       1.00      1.00      1.00       199
+Accuracy in case of Naive Bayes is coming 100% but accuracy is not the right measure to know whether the model is working fine.This result obtained is because we are traning it with skewed dataset.
+*****************************************************************************
+The accuracy from SVM using rbf kernel is  99.94118834651475 %
+The recall from SVM using rbf kernel is  69.84924623115577 %
+*****************************************************************************
