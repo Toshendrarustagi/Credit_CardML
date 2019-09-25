@@ -6,3 +6,7 @@ Accuracy in case of Naive Bayes is coming 100% but accuracy is not the right mea
 The accuracy from SVM using rbf kernel is  99.94118834651475 %
 The recall from SVM using rbf kernel is  69.84924623115577 %
 *****************************************************************************
+the accuracy from isolation forest for legit cases 90.05803388240811 %
+the accuracy from isolation forest for non legit cases 87.8048780487805 %
+
+*****************************************************************************

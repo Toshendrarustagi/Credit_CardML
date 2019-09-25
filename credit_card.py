@@ -77,3 +77,32 @@ def confusionMatrix(cm):
     print("The recall is ",((cm[1,1])/(cm[1,0]+cm[1,1]))*100)
 
 confusionMatrix(cm)
+
+#Train using isolation-forest
+#print('Toshendra')
+from sklearn.ensemble import IsolationForest
+inlier = data1[data1.Class == 0]
+inlier = inlier.drop(['Class'],axis = 1)
+outlier = data1[data1.Class == 1]
+outlier = outlier.drop(['Class'],axis = 1)
+inliers_train,inliers_test =  train_test_split(inlier,test_size = .3,random_state = 42)
+
+modelIsolation = IsolationForest()
+modelIsolation.fit(inliers_train)
+
+ypredIsolation_in = modelIsolation.predict(inliers_test)
+ypredIsolation_out = modelIsolation.predict(outlier)
+print('the accuracy from isolation forest for legit cases',list(ypredIsolation_in).count(1)/ypredIsolation_in.shape[0])
+print('the accuracy from isolation forest for non legit cases',list(ypredIsolation_out).count(-1)/ypredIsolation_out.shape[0])
+
+#comparing different models
+#print(accuracy_score(ytest,ypredNB))
+print(classification_report(ytest,ypred))
+print('Accuracy in case of Naive Bayes is coming 100% but accuracy is not the right measure to know whether the model is working fine.This result obtained is because we are traning it with skewed dataset.')
+
+
+print("The accuracy from SVM using rbf kernel is ",((cm[1,1]+cm[0,0])/(cm[0,0]+cm[0,1]+cm[1,0]+cm[1,1]))*100,"%")
+print("The recall from SVM using rbf kernel is ",((cm[1,1])/(cm[1,0]+cm[1,1]))*100,'%')
+
+print('the accuracy from isolation forest for legit cases',(list(ypredIsolation_in).count(1)/ypredIsolation_in.shape[0])*100,'%')
+print('the accuracy from isolation forest for non legit cases',(list(ypredIsolation_out).count(-1)/ypredIsolation_out.shape[0])*100,'%')
